@@ -1,7 +1,10 @@
 <? 
 
 session_start();
+    //Sessions are used to track logged in users and 
+    // so we include a session_start() at the top of the file.
 
+    
 // initializing variables
 $username = "";
 $email    = "";
@@ -33,7 +36,36 @@ if (isset($_POST['reg_user'])) {
 
     // first check the database to make sure 
     // a user does not already exist with the same username and/or email
+    $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1 ";
+    $result     =  mysqli_query($db, $user_check_query);
+    $user   = mysqli_fetch_assoc($result);
 
+
+    //Check if user exists
+    if ($user) {
+        if ($user['username'] === $username) {
+            array_push($errors, "Username already exists");
+        }
+
+        if ($user['email'] === $email) {
+            array_push($errors, "email already exists");
+        }
+    }
+
+
+    // Finally, register user if there are no errors in the form
+    if (count($errors) == 0) {
+        //encrypt the password before saving in the database
+        $password = md5($password_1);
+
+        $query = "INSERT INTO users (username, email, password)
+                    VALUES('$username', '$email', '$password')";
+
+        mysqli_query($db, $query);
+        $_SESSION['username'] = $username;
+        $_SESSION['success']  = "You are now logged in";
+        header('location: index.php');
+    }
 
 
 
