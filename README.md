@@ -3,7 +3,7 @@
 ################################################
 ################################################
 
-# FOR USER'S REGISTRATION.....................
+# FOR USER'S REGISTRATION.......................
 # The if statement determines if the reg_user button on the registration form is clicked. Remember, in our form, the submit button has a name attribute set to reg_user and that is what we are referencing in the if statement.
 
 
@@ -15,14 +15,17 @@
 
 
 
-# FOR USER LOGIN.................................
+# FOR USER LOGIN....................................
 
 
 # All those codes does is check if the user has filled the form correctly, verifies that their credentials match a record from the database and logs them in if it does. After logging in, the user is redirected them to the index.php file with a success message.
 
 
+# FOR THE INDEX.PHP FILE..........
 
-#
+# The first if statement checks if the user is already logged in. If they are not logged in, they will be redirected to the login page. Hence this page is accessible to only logged in users. If you'd like to make any page accessible only to logged in users, all you have to do is place this if statement at the top of the file.
+
+# The second if statement checks if the user has clicked the logout button. If yes, the system logs them out and redirects them back to the login page
 
 
 

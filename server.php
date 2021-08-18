@@ -17,7 +17,10 @@ $db = mysqli_connect('localhost', 'root', '', 'registration');
 
 //  REGISTER USER
 if (isset($_POST['reg_user'])) {
-    // receive all input values from the form
+    // receive all input values from the form and
+    // escapes special characters in a string for an SQL 
+    // statement using mysqli_real_escape_string function
+    
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $email    = mysqli_real_escape_string($db, $_POST['email']);
     $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
